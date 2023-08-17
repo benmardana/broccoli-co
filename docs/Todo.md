@@ -12,7 +12,7 @@
 - [x] As a user visiting the home page I should see a sticky header and footer
   - Header: BROCCOLI & CO
   - Footer: Made with <3 in Melbourne.\nc 2016 Broccoli & Co. All rights reserved.
-- [ ] As a user visting the home page I should see a Heading, Subheading and CTA
+- [x] As a user visting the home page I should see a Heading, Subheading and CTA
   - Heading: A better way to enjoy every day.
   - Subheading: Be the first to know when we launch.
   - CTA: Request an invite
