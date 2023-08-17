@@ -24,7 +24,8 @@ Create a simple yet clean homepage for them that allow users to enter their name
 - If the server returns 200 OK, it should switch to another popup, indicating that everything went through OK. This popup can be dismissed and will simply close - revealing the homepage again.
 - The server may return 400 Bad Request, in which case the app should simply display the error message from the server.
 - The Send button can be clicked again to re-attempt the submission.
-  _You're encouraged to tweak/customise the UI to provide a better user experience. However the final solution must still adhere to layout design provided._
+
+**You're encouraged to tweak/customise the UI to provide a better user experience. However the final solution must still adhere to layout design provided.**
 
 ## Tooling
 

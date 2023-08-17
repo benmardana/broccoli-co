@@ -1,4 +1,40 @@
 # Todo
 
-- [ ] Breakdown work into stories
-- [ ] Decide app tools
+- [x] Toolchain
+  - Build tool: Vite
+  - Language: Typescript
+  - Rendering Library: React
+  - Styling: SCSS & CSSModules
+  - Testing: Vitest
+  - Formatting: Prettier
+  - Linting: eslint
+- [x] Breakdown work into stories
+- [ ] As a user visiting the home page I should see a sticky header and footer
+  - Header: BROCCOLI & CO
+  - Footer: Made with <3 in Melbourne.\nc 2016 Broccoli & Co. All rights reserved.
+- [ ] As a user visting the home page I should see a Heading, Subheading and CTA
+  - Heading: A better way to enjoy every day.
+  - Subheading: Be the first to know when we launch.
+  - CTA: Request an invite
+- [ ] As a user, when I click on the CTA I should be presented with a dialog containing a signup form
+  - Heading: Request an invite
+  - Fields:
+    - Full name
+    - Email
+    - Confirm Email
+  - Submit button: Send
+  - Form should be accessible to all users
+- [ ] As a user, when completing the signup form I should receive validation messages when attempting to submit the form
+  - Name: >= 3 chars
+  - Email: email format
+  - Confirm Email: match Email
+- [ ] As a user, when I submit the validated form, the request is sent to the server
+  - button should be disabled and display placeholder text: "Sending, please wait...
+- [ ] When the server responds 2XX the dialog content should display a successful message and provide a button to close
+  - Heading: All done!
+  - Text: You will be one of the first to experience Broccoli & Co. when we launch.
+  - Button: OK
+- [ ] As a user, after successfully signing up, when I click the OK button, the dialog should close
+  - what happens when a user tries to re-sign up?
+- [ ] As a user, when the sign up fails, I should see a helpful error message under the Submit button
+  - Message: That email is already signed up, try again with another email
