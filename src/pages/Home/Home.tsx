@@ -1,6 +1,7 @@
 import { useRef } from 'react';
-import Dialog, { DialogRefProps } from '../components/Dialog/Dialog';
+import Dialog, { DialogRefProps } from '../../components/Dialog/Dialog';
 import styles from './home.module.scss';
+import InviteForm from './InviteForm';
 
 const Home = () => {
   const dialogRef = useRef<DialogRefProps>(null);
@@ -21,7 +22,9 @@ const Home = () => {
         <p>Made with ❤ in Melbourne.</p>
         <p>© 2016 Broccoli & Co. All rights reserved.</p>
       </footer>
-      <Dialog ref={dialogRef}>dialog</Dialog>
+      <Dialog ref={dialogRef}>
+        <InviteForm onSubmit={() => ({})} />
+      </Dialog>
     </>
   );
 };

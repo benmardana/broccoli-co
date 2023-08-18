@@ -16,7 +16,7 @@
   - Heading: A better way to enjoy every day.
   - Subheading: Be the first to know when we launch.
   - CTA: Request an invite
-- [ ] As a user, when I click on the CTA I should be presented with a dialog containing a signup form
+- [x] As a user, when I click on the CTA I should be presented with a dialog containing a signup form
   - Heading: Request an invite
   - Fields:
     - Full name
@@ -24,7 +24,7 @@
     - Confirm Email
   - Submit button: Send
   - Form should be accessible to all users
-- [ ] As a user, when completing the signup form I should receive validation messages when attempting to submit the form
+- [x] As a user, when completing the signup form I should receive validation messages when attempting to submit the form
   - Name: >= 3 chars
   - Email: email format
   - Confirm Email: match Email
