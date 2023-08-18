@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-interface InviteFormValues {
+export interface InviteFormValues {
   name: string;
   email: string;
   confirmEmail: string;

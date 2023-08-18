@@ -1,10 +1,19 @@
 import { useRef } from 'react';
 import Dialog, { DialogRefProps } from '../../components/Dialog/Dialog';
 import styles from './home.module.scss';
-import InviteForm from './InviteForm';
+import InviteForm, { InviteFormValues } from './InviteForm';
+import usePost from '../../hooks/usePost';
 
 const Home = () => {
   const dialogRef = useRef<DialogRefProps>(null);
+  const { post, isLoading, error } = usePost(
+    'https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth'
+  );
+
+  const onSubmit = (data: InviteFormValues) => {
+    post({ name: data.name, email: data.email });
+    dialogRef.current?.close();
+  };
 
   return (
     <>
@@ -23,7 +32,11 @@ const Home = () => {
         <p>© 2016 Broccoli & Co. All rights reserved.</p>
       </footer>
       <Dialog ref={dialogRef}>
-        <InviteForm onSubmit={() => ({})} />
+        <InviteForm
+          onSubmit={onSubmit}
+          submitting={isLoading}
+          submissionError={error instanceof Error ? error.message : undefined}
+        />
       </Dialog>
     </>
   );
