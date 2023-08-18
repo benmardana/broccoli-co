@@ -1,6 +1,7 @@
 import { act, render, screen, within } from '@testing-library/react';
 import Dialog, { DialogRefProps } from './Dialog';
 import { createRef } from 'react';
+import userEvent from '@testing-library/user-event';
 
 describe('Dialog', () => {
   test('should not be visible by default', () => {
@@ -49,5 +50,23 @@ describe('Dialog', () => {
     const dialog = await screen.findByRole('dialog', { hidden: true });
 
     expect(within(dialog).queryByText('/^hello, world$/'));
+  });
+
+  test('should close when clicking outside the dialog', async () => {
+    const user = userEvent.setup();
+
+    const ref = createRef<DialogRefProps>();
+    render(<Dialog ref={ref}>hello, world</Dialog>);
+
+    act(() => ref.current?.open());
+    expect(await screen.findByRole('dialog', { hidden: true })).toHaveAttribute(
+      'open'
+    );
+
+    await user.click(screen.getByRole('dialog', { hidden: true }));
+
+    expect(
+      await screen.findByRole('dialog', { hidden: true })
+    ).not.toHaveAttribute('open');
   });
 });
