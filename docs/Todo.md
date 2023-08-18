@@ -29,7 +29,7 @@
   - Email: email format
   - Confirm Email: match Email
 - [ ] As a user, when I submit the validated form, the request is sent to the server
-  - button should be disabled and display placeholder text: "Sending, please wait...
+  - button should be disabled and display placeholder text: "Sending, please wait..."
 - [ ] When the server responds 2XX the dialog content should display a successful message and provide a button to close
   - Heading: All done!
   - Text: You will be one of the first to experience Broccoli & Co. when we launch.

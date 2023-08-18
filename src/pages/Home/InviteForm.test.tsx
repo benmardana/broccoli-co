@@ -96,4 +96,64 @@ describe('InviteForm', () => {
       ).toHaveTextContent(/^Confirm email must match email$/);
     });
   });
+
+  describe('submit', () => {
+    test('when fields are invalid should not call onSubmit', async () => {
+      const onSubmit = vi.fn();
+
+      const user = userEvent.setup();
+
+      render(<InviteForm onSubmit={onSubmit} />);
+
+      await user.click(screen.getByRole('button'));
+
+      expect(onSubmit).not.toHaveBeenCalled();
+    });
+
+    test('when fields are invalid should call onSubmit', async () => {
+      const onSubmit = vi.fn();
+
+      const user = userEvent.setup();
+
+      render(<InviteForm onSubmit={onSubmit} />);
+      await user.type(
+        screen.getByRole('textbox', { name: 'Full name' }),
+        'Nic Cage'
+      );
+      await user.type(
+        screen.getByRole('textbox', { name: 'Email' }),
+        'nic@emails.com'
+      );
+      await user.type(
+        screen.getByRole('textbox', { name: 'Confirm email' }),
+        'nic@emails.com'
+      );
+
+      await user.click(screen.getByRole('button'));
+
+      expect(onSubmit).toHaveBeenCalled();
+    });
+
+    test('while submitting is true button should be disabled and show alt text', () => {
+      render(<InviteForm onSubmit={() => ({})} submitting />);
+
+      expect(screen.getByRole('button')).toBeDisabled();
+      expect(screen.getByRole('button')).toHaveTextContent(
+        /^Sending, please wait\.\.\.$/
+      );
+    });
+
+    test('should display submission error', () => {
+      render(
+        <InviteForm
+          onSubmit={() => ({})}
+          submissionError="There was a problem"
+        />
+      );
+
+      expect(
+        screen.getByRole('alert', { name: 'Form submission error' })
+      ).toHaveTextContent('There was a problem');
+    });
+  });
 });

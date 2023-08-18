@@ -8,9 +8,15 @@ interface InviteFormValues {
 
 interface InviteFormProps {
   onSubmit: (data: InviteFormValues) => void;
+  submitting?: boolean;
+  submissionError?: string;
 }
 
-const InviteForm = ({ onSubmit }: InviteFormProps) => {
+const InviteForm = ({
+  onSubmit,
+  submitting,
+  submissionError,
+}: InviteFormProps) => {
   const {
     register,
     handleSubmit,
@@ -85,9 +91,18 @@ const InviteForm = ({ onSubmit }: InviteFormProps) => {
             {errors.confirmEmail.message}
           </div>
         )}
-        <button style={{ display: 'block' }} type="submit">
-          Send
+        <button
+          style={{ display: 'block' }}
+          type="submit"
+          disabled={submitting}
+        >
+          {submitting ? 'Sending, please wait...' : 'Send'}
         </button>
+        {submissionError && (
+          <div role="alert" aria-label="Form submission error">
+            {submissionError}
+          </div>
+        )}
       </form>
     </>
   );
