@@ -71,10 +71,15 @@ h6 {
 
 body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
+  background: #fff2bd;
   background: linear-gradient(
     180deg,
-    variables.$accent 0%,
-    variables.$contrast 100%
+    #fff2bd 0%,
+    #f4d797 21%,
+    #ebb58a 35%,
+    #da7f7d 69%,
+    #b5728e 92%,
+    #776e99 100%
   );
   color: variables.$primaryColor;
 }
@@ -95,7 +100,7 @@ button {
   padding: 8px 16px;
   cursor: pointer;
   border: 2px solid variables.$primaryColor;
-  color: variables.$contrast;
+  color: variables.$contrastColor;
   border-radius: 15px;
   transition-duration: 0.2s;
 
@@ -105,8 +110,8 @@ button {
   }
 
   &:disabled {
-    border-color: variables.$contrast;
-    background-color: variables.$contrast;
+    border-color: variables.$contrastColor;
+    background-color: variables.$contrastColor;
     color: variables.$primaryColor;
     cursor: progress;
   }

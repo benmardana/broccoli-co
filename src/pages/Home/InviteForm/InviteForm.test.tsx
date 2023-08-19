@@ -85,7 +85,7 @@ describe('InviteForm', () => {
 
       expect(
         screen.queryByRole('alert', { name: 'Email confirm error' })
-      ).toHaveTextContent(/^Confirm email is required$/);
+      ).toHaveTextContent(/^Confirmation email is required$/);
 
       await user.type(confirmEmailField, 'hello@email.com');
 
@@ -93,7 +93,7 @@ describe('InviteForm', () => {
 
       expect(
         screen.queryByRole('alert', { name: 'Email confirm error' })
-      ).toHaveTextContent(/^Confirm email must match email$/);
+      ).toHaveTextContent(/^Confirmation email must match email$/);
     });
   });
 
@@ -135,7 +135,7 @@ describe('InviteForm', () => {
     });
 
     test('while submitting is true button should be disabled and show alt text', () => {
-      render(<InviteForm onSubmit={() => ({})} submitting />);
+      render(<InviteForm onSubmit={() => ({})} isSubmitting />);
 
       expect(screen.getByRole('button')).toBeDisabled();
       expect(screen.getByRole('button')).toHaveTextContent(

@@ -47,7 +47,7 @@ $medium-inline-margin: 48px;
   line-height: 1em;
 
   @include mixins.medium {
-    font-size: 5rem;
+    font-size: 5em;
   }
 }
 
@@ -137,7 +137,7 @@ $medium-inline-margin: 48px;
     }
 
     &:focus-visible {
-      outline-color: variables.$accent;
+      outline-color: variables.$accentColor;
     }
   }
 

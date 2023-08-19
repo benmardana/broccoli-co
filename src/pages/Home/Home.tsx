@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import Dialog, { DialogRefProps } from '../../components/Dialog/Dialog';
 import styles from './home.module.scss';
-import InviteForm, { InviteFormValues } from './InviteForm';
+import InviteForm, { InviteFormValues } from './InviteForm/InviteForm';
 import usePost from '../../hooks/usePost';
 
 const Home = () => {
@@ -64,7 +64,7 @@ const Home = () => {
               <h2 className={styles.dialogHeading}>Request an invite</h2>
               <InviteForm
                 onSubmit={onSubmit}
-                submitting={isLoading}
+                isSubmitting={isLoading}
                 submissionError={submissionError}
                 className={styles.inviteForm}
               />

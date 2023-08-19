@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import Validation from './Validation';
 
 export interface InviteFormValues {
   name: string;
@@ -8,14 +9,14 @@ export interface InviteFormValues {
 
 interface InviteFormProps {
   onSubmit: (data: InviteFormValues) => void;
-  submitting?: boolean;
+  isSubmitting?: boolean;
   submissionError?: string;
   className?: string;
 }
 
 const InviteForm = ({
   onSubmit,
-  submitting,
+  isSubmitting,
   submissionError,
   className,
 }: InviteFormProps) => {
@@ -37,12 +38,7 @@ const InviteForm = ({
         className={className}
       >
         <input
-          {...register('name', {
-            validate: {
-              minLength: (name) =>
-                name.length >= 3 || 'Full name must be at least 3 characters',
-            },
-          })}
+          {...register('name', { ...Validation.name })}
           type="text"
           name="name"
           id="name"
@@ -57,13 +53,7 @@ const InviteForm = ({
           </div>
         )}
         <input
-          {...register('email', {
-            required: 'Email is required',
-            pattern: {
-              value: /^\S+@\S+\.\S+$/,
-              message: 'Email is invalid',
-            },
-          })}
+          {...register('email', { ...Validation.email })}
           name="email"
           id="email"
           aria-label="Email"
@@ -77,14 +67,7 @@ const InviteForm = ({
           </div>
         )}
         <input
-          {...register('confirmEmail', {
-            required: 'Confirmation email is required',
-            validate: {
-              matchesEmail: (email, formValues) =>
-                email === formValues.email ||
-                'Confirmation email must match email',
-            },
-          })}
+          {...register('confirmEmail', { ...Validation.confirmEmail })}
           name="confirmEmail"
           id="confirmEmail"
           aria-label="Confirm email"
@@ -100,9 +83,9 @@ const InviteForm = ({
         <button
           style={{ display: 'block' }}
           type="submit"
-          disabled={submitting}
+          disabled={isSubmitting}
         >
-          {submitting ? 'Sending, please wait...' : 'Send'}
+          {isSubmitting ? 'Sending, please wait...' : 'Send'}
         </button>
         {submissionError && (
           <div role="alert" aria-label="Form submission error">
