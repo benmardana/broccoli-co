@@ -5,16 +5,19 @@ describe('useTest', () => {
   test('intial state', () => {
     global.fetch = vi.fn().mockResolvedValue({
       ok: true,
+      json: () => 'ok',
     });
     const { result } = renderHook(() => usePost(''));
-    const { isLoading, error } = result.current;
+    const { isLoading, error, response } = result.current;
     expect(isLoading).toBeFalsy();
     expect(error).toBeFalsy();
+    expect(response).toBeFalsy();
   });
 
   test('should change loading state during post', async () => {
     global.fetch = vi.fn().mockResolvedValue({
       ok: true,
+      json: () => 'ok',
     });
     const { result, rerender } = renderHook(() => usePost(''));
     const { post } = result.current;
@@ -44,6 +47,25 @@ describe('useTest', () => {
 
     await waitFor(() => {
       expect(result.current.error).toBeInstanceOf(Error);
+    });
+  });
+
+  test('should update response on success', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => 'ok',
+    });
+    const { result, rerender } = renderHook(() => usePost(''));
+    const { post } = result.current;
+
+    expect(result.current.isLoading).toBeFalsy();
+    act(() => {
+      post();
+    });
+    rerender();
+
+    await waitFor(() => {
+      expect(result.current.response).toBe('ok');
     });
   });
 });

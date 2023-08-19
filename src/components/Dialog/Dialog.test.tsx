@@ -7,7 +7,7 @@ describe('Dialog', () => {
   test('should not be visible by default', () => {
     render(<Dialog>dialog</Dialog>);
 
-    expect(screen.queryByRole('dialog', { hidden: true })).not.toHaveAttribute(
+    expect(screen.getByRole('dialog', { hidden: true })).not.toHaveAttribute(
       'open'
     );
   });
@@ -16,38 +16,30 @@ describe('Dialog', () => {
     const ref = createRef<DialogRefProps>();
     render(<Dialog ref={ref}>dialog</Dialog>);
 
-    expect(screen.queryByRole('dialog', { hidden: true })).not.toHaveAttribute(
-      'open'
-    );
-
     expect(ref.current).toHaveProperty('open');
     expect(ref.current).toHaveProperty('close');
   });
 
-  test('should open and close', async () => {
+  test('should open and close', () => {
     const ref = createRef<DialogRefProps>();
     render(<Dialog ref={ref}>invisible</Dialog>);
 
-    expect(screen.queryByRole('dialog', { hidden: true })).not.toHaveAttribute(
-      'open'
-    );
-
     act(() => ref.current?.open());
-    expect(await screen.findByRole('dialog', { hidden: true })).toHaveAttribute(
+    expect(screen.getByRole('dialog', { hidden: true })).toHaveAttribute(
       'open'
     );
 
     act(() => ref.current?.close());
-    expect(
-      await screen.findByRole('dialog', { hidden: true })
-    ).not.toHaveAttribute('open');
+    expect(screen.getByRole('dialog', { hidden: true })).not.toHaveAttribute(
+      'open'
+    );
   });
 
-  test('should render content', async () => {
+  test('should render content', () => {
     const ref = createRef<DialogRefProps>();
     render(<Dialog ref={ref}>hello, world</Dialog>);
 
-    const dialog = await screen.findByRole('dialog', { hidden: true });
+    const dialog = screen.getByRole('dialog', { hidden: true });
 
     expect(within(dialog).queryByText('/^hello, world$/'));
   });
@@ -59,14 +51,14 @@ describe('Dialog', () => {
     render(<Dialog ref={ref}>hello, world</Dialog>);
 
     act(() => ref.current?.open());
-    expect(await screen.findByRole('dialog', { hidden: true })).toHaveAttribute(
+    expect(screen.getByRole('dialog', { hidden: true })).toHaveAttribute(
       'open'
     );
 
     await user.click(screen.getByRole('dialog', { hidden: true }));
 
-    expect(
-      await screen.findByRole('dialog', { hidden: true })
-    ).not.toHaveAttribute('open');
+    expect(screen.getByRole('dialog', { hidden: true })).not.toHaveAttribute(
+      'open'
+    );
   });
 });

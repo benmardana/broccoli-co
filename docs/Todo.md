@@ -30,11 +30,12 @@
   - Confirm Email: match Email
 - [x] As a user, when I submit the validated form, the request is sent to the server
   - button should be disabled and display placeholder text: "Sending, please wait..."
-- [ ] When the server responds 2XX the dialog content should display a successful message and provide a button to close
+- [x] When the server responds 2XX the dialog content should display a successful message and provide a button to close
   - Heading: All done!
   - Text: You will be one of the first to experience Broccoli & Co. when we launch.
   - Button: OK
-- [ ] As a user, after successfully signing up, when I click the OK button, the dialog should close
+- [x] As a user, after successfully signing up, when I click the OK button, the dialog should close
   - what happens when a user tries to re-sign up?
+  - ootb it will continue showing success until refresh
 - [x] As a user, when the sign up fails, I should see a helpful error message under the Submit button
   - Message: That email is already signed up, try again with another email

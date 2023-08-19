@@ -110,7 +110,7 @@ describe('InviteForm', () => {
       expect(onSubmit).not.toHaveBeenCalled();
     });
 
-    test('when fields are invalid should call onSubmit', async () => {
+    test('when fields are valid should call onSubmit', async () => {
       const onSubmit = vi.fn();
 
       const user = userEvent.setup();

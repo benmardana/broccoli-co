@@ -6,13 +6,15 @@ import usePost from '../../hooks/usePost';
 
 const Home = () => {
   const dialogRef = useRef<DialogRefProps>(null);
-  const { post, isLoading, error } = usePost(
+  const { post, isLoading, error, response } = usePost<
+    Pick<InviteFormValues, 'name' | 'email'>,
+    string
+  >(
     'https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth'
   );
 
   const onSubmit = (data: InviteFormValues) => {
     post({ name: data.name, email: data.email });
-    dialogRef.current?.close();
   };
 
   return (
@@ -32,11 +34,22 @@ const Home = () => {
         <p>© 2016 Broccoli & Co. All rights reserved.</p>
       </footer>
       <Dialog ref={dialogRef}>
-        <InviteForm
-          onSubmit={onSubmit}
-          submitting={isLoading}
-          submissionError={error instanceof Error ? error.message : undefined}
-        />
+        {response ? (
+          <div>
+            <h2>All done!</h2>
+            <p>
+              You will be one of the first to experience Broccoli & Co. when we
+              launch.
+            </p>
+            <button onClick={() => dialogRef.current?.close()}>OK</button>
+          </div>
+        ) : (
+          <InviteForm
+            onSubmit={onSubmit}
+            submitting={isLoading}
+            submissionError={error instanceof Error ? error.message : undefined}
+          />
+        )}
       </Dialog>
     </>
   );
