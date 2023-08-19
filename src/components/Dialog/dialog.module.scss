@@ -1,4 +1,15 @@
-.dialog[open] {
-  padding: 0;
-  margin: auto;
+@use '../../styles/variables' as variables;
+
+.dialog {
+  color: inherit;
+  border-radius: 45px;
+
+  &::backdrop {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  &[open] {
+    padding: 0;
+    margin: auto;
+  }
 }
