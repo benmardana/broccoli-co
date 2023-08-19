@@ -39,3 +39,5 @@
   - ootb it will continue showing success until refresh
 - [x] As a user, when the sign up fails, I should see a helpful error message under the Submit button
   - Message: That email is already signed up, try again with another email
+- [ ] Layout
+- [ ] Styling

@@ -10,12 +10,14 @@ interface InviteFormProps {
   onSubmit: (data: InviteFormValues) => void;
   submitting?: boolean;
   submissionError?: string;
+  className?: string;
 }
 
 const InviteForm = ({
   onSubmit,
   submitting,
   submissionError,
+  className,
 }: InviteFormProps) => {
   const {
     register,
@@ -29,8 +31,11 @@ const InviteForm = ({
 
   return (
     <>
-      <h2>Request an invite</h2>
-      <form onSubmit={handleSubmit(onSubmit)} aria-label="invite form">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        aria-label="invite form"
+        className={className}
+      >
         <input
           {...register('name', {
             validate: {

@@ -19,37 +19,55 @@ const Home = () => {
 
   return (
     <>
-      <header>
-        <h1>Broccoli & Co.</h1>
+      <header className={styles.header}>
+        <h1 className={styles.primaryHeading}>Broccoli & Co.</h1>
       </header>
       <main className={styles.main}>
-        <h2>A better way to enjoy every day.</h2>
-        <h3>Be the first to know when we launch.</h3>
-        <button onClick={() => dialogRef.current?.open()}>
+        <h2 className={styles.mainHeading}>
+          A better way
+          <br /> to enjoy every day.
+        </h2>
+        <h3 className={styles.mainSubheading}>
+          Be the first to know when we launch.
+        </h3>
+        <button
+          onClick={() => dialogRef.current?.open()}
+          className={styles.mainCTA}
+        >
           Request an invite
         </button>
       </main>
-      <footer>
+      <footer className={styles.footer}>
         <p>Made with ❤ in Melbourne.</p>
         <p>© 2016 Broccoli & Co. All rights reserved.</p>
       </footer>
-      <Dialog ref={dialogRef}>
-        {response ? (
-          <div>
-            <h2>All done!</h2>
-            <p>
-              You will be one of the first to experience Broccoli & Co. when we
-              launch.
-            </p>
-            <button onClick={() => dialogRef.current?.close()}>OK</button>
-          </div>
-        ) : (
-          <InviteForm
-            onSubmit={onSubmit}
-            submitting={isLoading}
-            submissionError={error instanceof Error ? error.message : undefined}
-          />
-        )}
+      <Dialog ref={dialogRef} className={styles.dialog}>
+        <div className={styles.dialogContent}>
+          {response ? (
+            <>
+              <h2 className={styles.dialogHeading}>All done!</h2>
+              <div className={styles.dialogSuccessContent}>
+                <p className={styles.dialogSuccessMessage}>
+                  You will be one of the first to experience Broccoli & Co. when
+                  we launch.
+                </p>
+                <button onClick={() => dialogRef.current?.close()}>OK</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className={styles.dialogHeading}>Request an invite</h2>
+              <InviteForm
+                onSubmit={onSubmit}
+                submitting={isLoading}
+                submissionError={
+                  error instanceof Error ? error.message : undefined
+                }
+                className={styles.inviteForm}
+              />
+            </>
+          )}
+        </div>
       </Dialog>
     </>
   );

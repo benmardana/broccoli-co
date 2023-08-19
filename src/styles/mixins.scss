@@ -1,0 +1,14 @@
+$bp-small: 600px;
+$bp-medium: 768px;
+
+@mixin medium {
+  @media screen and (min-width: $bp-medium) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media screen and (min-width: $bp-small) {
+    @content;
+  }
+}

@@ -10,6 +10,7 @@ import styles from './dialog.module.scss';
 
 interface DialogProps {
   children: React.ReactNode;
+  className?: string;
 }
 
 export interface DialogRefProps {
@@ -18,7 +19,7 @@ export interface DialogRefProps {
 }
 
 const _Dialog = (
-  { children }: DialogProps,
+  { children, className }: DialogProps,
   ref: ForwardedRef<DialogRefProps>
 ) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -50,7 +51,10 @@ const _Dialog = (
     []
   );
   return (
-    <dialog className={styles.dialog} ref={dialogRef}>
+    <dialog
+      className={`${styles.dialog}${className ? ` ${className}` : ''}`}
+      ref={dialogRef}
+    >
       {children}
     </dialog>
   );
