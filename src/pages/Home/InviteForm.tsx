@@ -78,10 +78,11 @@ const InviteForm = ({
         )}
         <input
           {...register('confirmEmail', {
-            required: 'Confirm email is required',
+            required: 'Confirmation email is required',
             validate: {
               matchesEmail: (email, formValues) =>
-                email === formValues.email || 'Confirm email must match email',
+                email === formValues.email ||
+                'Confirmation email must match email',
             },
           })}
           name="confirmEmail"

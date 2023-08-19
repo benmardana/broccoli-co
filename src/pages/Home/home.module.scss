@@ -7,6 +7,30 @@
     flex-direction: column;
     justify-content: space-between;
   }
+
+  button {
+    background-color: inherit;
+    padding: 4px 8px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    border: 2px solid black;
+
+    @include mixins.medium {
+      padding: 8px 16px;
+    }
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+
+    &:disabled {
+      border-color: lightgrey;
+      background-color: lightgrey;
+      color: white;
+      cursor: progress;
+    }
+  }
 }
 
 $medium-content-width: 1440px;
@@ -51,6 +75,7 @@ $medium-inline-margin: 48px;
 
 .mainHeading {
   font-size: 3em;
+  line-height: 1em;
 
   @include mixins.medium {
     font-size: 5rem;
@@ -67,15 +92,9 @@ $medium-inline-margin: 48px;
 }
 
 .mainCTA {
-  background-color: inherit;
-  font-size: 1em;
-  padding: 4px 8px;
   margin-block-start: 16px;
 
   @include mixins.medium {
-    font-size: 2em;
-    padding: 8px 16px;
-    font-size: 1.5em;
     margin-block-start: 32px;
   }
 }
@@ -101,8 +120,6 @@ $medium-inline-margin: 48px;
 
   button {
     margin-top: 48px;
-    background-color: inherit;
-    padding: 4px 8px;
   }
 }
 
@@ -143,16 +160,18 @@ $medium-inline-margin: 48px;
   input {
     font-size: 16px;
     padding: 6px;
-  }
+    border-radius: 0;
+    border: 1px solid grey;
 
-  input:not(:first-of-type) {
-    margin-block-start: 16px;
+    &:not(:first-of-type) {
+      margin-block-start: 16px;
+    }
   }
 
   *[role='alert'] {
     color: crimson;
 
-    &:last-of-type {
+    &[aria-label='Form submission error'] {
       margin-block-start: 16px;
       text-align: center;
     }

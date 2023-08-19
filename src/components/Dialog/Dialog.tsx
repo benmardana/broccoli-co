@@ -33,7 +33,7 @@ const _Dialog = (
       }
     };
 
-    document.addEventListener('click', onClickOutside);
+    document.addEventListener('mousedown', onClickOutside);
 
     return () => document.removeEventListener('click', onClickOutside);
   }, []);

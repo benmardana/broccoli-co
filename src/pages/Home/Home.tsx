@@ -17,6 +17,11 @@ const Home = () => {
     post({ name: data.name, email: data.email });
   };
 
+  const submissionError =
+    error instanceof Error
+      ? error.message.replace('Bad Request: ', '')
+      : undefined;
+
   return (
     <>
       <header className={styles.header}>
@@ -60,9 +65,7 @@ const Home = () => {
               <InviteForm
                 onSubmit={onSubmit}
                 submitting={isLoading}
-                submissionError={
-                  error instanceof Error ? error.message : undefined
-                }
+                submissionError={submissionError}
                 className={styles.inviteForm}
               />
             </>
